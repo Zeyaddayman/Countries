@@ -2,7 +2,7 @@ import CountriesList from "./components/CountriesList";
 import Filters from "./components/Filters";
 import regions from "./utils/regions";
 
-export default async function Home({searchParams}) {
+export default async function Home( {searchParams} ) {
 
     const query = searchParams?.query || '';
     const region = searchParams?.region || '';
