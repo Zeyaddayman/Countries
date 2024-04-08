@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 export async function generateMetadata({ params }) {
     const id = params.countryId;
 
-    const res = await fetch(`http://localhost:5000/api/countries/${id}`);
+    const res = await fetch(`https://countries-erf9.onrender.com/api/countries/${id}`);
     let country = await res.json();
     let countryName = country.data.country.name;
 
