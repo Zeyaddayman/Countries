@@ -1,21 +1,15 @@
 import CountryPreview from "@/app/components/CountryPreview";
 import { headers } from "next/headers";
-import NotFound from "./not-found";
 
 export async function generateMetadata({ params }) {
     const id = params.countryId;
 
     const res = await fetch(`https://countries-erf9.onrender.com/api/countries/${id}`);
     let country = await res.json();
-    if (country.status === 'success') {
-        let countryName = country.data.country.name;
-        return {
-            title: countryName
-        }
-    } else {
-        return {
-            title: 'Country Not Found'
-        }
+    let countryName = country.data.country.name;
+
+    return {
+        title: countryName
     }
 }
 
@@ -26,25 +20,18 @@ export default async function Country({ params }) {
 
     let id = params.countryId;
 
-    const res = await fetch(`https://countries-erf9.onrender.com/api/countries/${id}`);
-    let country = await res.json();
-    if (country.status === 'success') {
+    try {
+        const res = await fetch(`https://countries-erf9.onrender.com/api/countries/${id}`);
+
+        let country = await res.json();
         country = country.data.country;
+
         return (
             <CountryPreview country={country} stepBack={fullUrl} />
         )
-    } else {
-        return <NotFound />
+    } catch (error) {
+        return (
+            <h1 className="text-center text-xl">This Country Does Not Exist</h1>
+        )
     }
-}
-
-
-export async function generateStaticParams() {
-    const res = await fetch(`https://countries-erf9.onrender.com/api/countries`);
-    let countries = await res.json();
-    countries = countries.data.countries;
-
-    return countries.map((country) => (
-        {countryId: country._id}
-    ))
 }
