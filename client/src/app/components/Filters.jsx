@@ -35,6 +35,8 @@ export default function Filters() {
                 className="text-xl absolute left-3 top-1/2 -translate-y-1/2"
                 />
                 <input
+                id="search-term"
+                name="search-term"
                 className="p-3 w-full pl-10 rounded shadow-md outline-none" type="text" 
                 placeholder="Search for a country..." 
                 defaultValue={searchParams.get('query')?.toString()}
