@@ -21,7 +21,7 @@ export default async function Country({ params }) {
     let id = params.countryId;
 
     try {
-        const res = await fetch(`https://countries-erf9.onrender.com/api/countries${id}`);
+        const res = await fetch(`https://countries-erf9.onrender.com/api/countries/${id}`);
 
         let country = await res.json();
         country = country.data.country;
