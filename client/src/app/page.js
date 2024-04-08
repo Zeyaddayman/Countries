@@ -10,11 +10,11 @@ export default async function Home({searchParams}) {
     let countries;
 
     if (region && regions.includes(region.toLowerCase())) {
-        const res = await fetch(`http://localhost:5000/api/countries/region/${region}`);
+        const res = await fetch(`https://countries-erf9.onrender.com/api/countries/region/${region}`);
         countries = await res.json();
         countries = countries.data.countries;
     } else {
-        const res = await fetch('http://localhost:5000/api/countries');
+        const res = await fetch('https://countries-erf9.onrender.com/api/countries');
         countries = await res.json();
         countries = countries.data.countries;
     }
